@@ -1,0 +1,426 @@
+Final Results:
+{
+  "equation": "c[0]/x1",
+  "complexity": 3,
+  "mse": 310.24145142
+}
+{
+  "equation": "c[0]-c[1]/x1",
+  "complexity": 5,
+  "mse": 3.3828746
+}
+{
+  "equation": "c[0]*x1/(c[1]*x1+c[2])",
+  "complexity": 9,
+  "mse": 0.12263081
+}
+{
+  "equation": "c[0]*x1/(c[1]+x1)",
+  "complexity": 7,
+  "mse": 0.12263081
+}
+Cost for this run: $0.5522999999999999
+Total chain run time: 99.63295030593872 seconds.
+
+
+Iteration Information:
+{
+  "Iteration number": "Seed",
+  "SciPy feedback": "None",
+  "LLM Initial Thoughts": "Scratch Pad:\n\nLooking at the data, there seems to be a decreasing relationship between x1 and y, with y decreasing as x1 increases. This suggests a negative correlation. However, the relationship does not seem to be linear since the rate of decrease in y is not constant with the increase in x1. \n\nA simple linear regression model like y = c0 - c1*x1 might not provide a good fit for the data. We could try a polynomial regression model like y = c0 - c1*x1^2, but according to the instructions, no exponentials are permitted. \n\nSo, we will have to use a combination of addition, subtraction, multiplication, and division to get the best approximation. \n\nGiven the decreasing relationship and the constraints, three potential models could be:\n\n1. y = c0 - c1*x1\n2. y = c0 - c1/x1\n3. y = (c0 - x1)/c1",
+  "New equations generated": [
+    "c[0]-c[1]*x1",
+    "c[0]-c[1]/x1",
+    "(c[0]-x1)/c[1]"
+  ]
+}
+{
+  "Iteration number": 1,
+  "SciPy feedback": [
+    {
+      "equation": "(c[0]-x1)/c[1]",
+      "complexity": 5,
+      "mse": 46.17289256
+    },
+    {
+      "equation": "c[0]-c[1]*x1",
+      "complexity": 5,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nLooking at the dataset, it seems that as x1 increases, y decreases. This indicates a negative correlation between the two variables. \n\nThe three given equations already include basic operations such as multiplication, division, and subtraction. To come up with diverse equations, we could use combinations of these operations. \n\nEnsuring the equations aren't SR-similar to the provided ones, we could try the following options:\n\n1. A simple subtraction between a constant and x1 multiplied by another constant, but in reverse order to what was already suggested. This should still provide a good fit while not being SR-similar.\n\n2. A division between a constant and the product of x1 and another constant. This is different from the suggested equations as it involves both multiplication and division.\n\n3. A division of the difference between a constant and x1 by another constant. This is a combination of subtraction and division, which is not presented in the given equations.",
+  "New equations generated": [
+    "x1*c[0]-c[1]",
+    "c[0]/(x1*c[1])",
+    "(c[0]-x1)/c[1]"
+  ]
+}
+{
+  "Iteration number": 2,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]*x1",
+      "complexity": 5,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "x1*c[0]-c[1]",
+      "complexity": 5,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    }
+  ],
+  "LLM Thoughts": "Let's analyze the given equations and dataset. The dependent variable y seems to be decreasing as the independent variable x1 increases. This suggests a negative correlation. \n\nThe given equations are:\n1. 'c[0]-c[1]*x1' \n2. 'x1*c[0]-c[1]'\n3. 'c[0]-c[1]/x1'\n\nThe equations suggest a simple linear relationship with x1 or its reciprocal. The first and the second equation are basically the same, only rearranged. The third equation is a variation with 1/x1. \n\nGiven the restrictions, we need to form new equations that are not SR-similar to the given ones. This means we need to introduce new structures while keeping the complexity low. \n\nHere are some suggestions:\n\n1. A simple inversion of the first equation: 'c[0]*x1-c[1]'\n2. A blend of the first and third equations: 'c[0]/(c[1]*x1)'\n3. A twist on the second equation: 'c[0]/(x1+c[1])'",
+  "New equations generated": [
+    "c[0]*x1-c[1]",
+    "c[0]/(c[1]*x1)",
+    "c[0]/(x1+c[1])"
+  ]
+}
+{
+  "Iteration number": 3,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]*x1",
+      "complexity": 5,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "x1*c[0]-c[1]",
+      "complexity": 5,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\nThe equations provided in the Pareto front are simple linear regressions with the first two having the same mean squared error. The third equation is a bit more complex as it involves dividing the constant by the independent variable, which leads to a lower mean squared error.\n\nLooking at the dataset, the dependent variable 'y' appears to be decreasing as the independent variable 'x1' increases. This suggests that an equation involving division or subtraction might best fit the data.\n\nThe suggested equations should be diverse and not SR-similar to the ones provided in the Pareto front or each other. They should also be relatively simple to minimize complexity while aiming for a lower loss.\n\nSuggested Equations:\n1. 'c[0]/(c[1]+x1)': This equation involves dividing the constant by the sum of another constant and the independent variable. It is not SR-similar to the existing equations as it involves a different mathematical operation (division by a sum rather than a single variable or constant).\n\n2. 'c[0]*x1 - c[1]': This equation involves multiplying the constant and the independent variable, then subtracting another constant. It is different from the existing equations as it involves a different mathematical operation (multiplication followed by subtraction rather than straight subtraction or division).\n\n3. 'c[0] - c[1]/(1/x1)': This equation involves subtracting a constant divided by the reciprocal of the independent variable from another constant. It is not SR-similar to the existing equations as it involves a different mathematical operation (division by a reciprocal rather than a single variable or constant).\n\nRemember to avoid including other unary operators beyond the four basic math operations, and to use the dataset's only independent variable, x1.",
+  "New equations generated": [
+    "c[0]/(c[1]+x1)",
+    "c[0]*x1-c[1]",
+    "c[0]-c[1]/(1/x1)"
+  ]
+}
+{
+  "Iteration number": 4,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/(1/x1)",
+      "complexity": 7,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]*x1-c[1]",
+      "complexity": 5,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nLooking at the dataset and given equations, I can see that the dependent variable y decreases as the independent variable x1 increases. This suggests a negative correlation between the variables. \n\nThe problem requires new equations that minimize both complexity and loss. The complexity measure in this problem is the number of operators in the equation. The loss measure is the mean squared error, which should be minimized.\n\nGiven the restrictions, we cannot use any complex unary operators, we can only use +, -, *, and /. We also cannot fit constants, and can only include the accessible independent variable from the data, x1. We also need to avoid suggesting SR-similar expressions.\n\nThe suggested equations all have mean squared errors between 3.3828746 and 6.8841212 and complexities between 5 and 7. Therefore, the new equations should ideally have complexities less than or equal to 5 and mean squared errors less than or equal to 3.3828746.\n\nPossible new equations could be:\n- \"c0*x1 - c1/x1\"\n- \"c0/x1 + c1\"\n- \"c0 - c1*x1\"\n\nThese equations all have a complexity of 5, which is the lowest complexity of the suggested equations. They are also not SR-similar to the suggested equations.",
+  "New equations generated": [
+    "c[0]*x1-c[1]/x1",
+    "c[0]/x1+c[1]",
+    "c[0]-c[1]*x1"
+  ]
+}
+{
+  "Iteration number": 5,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/(1/x1)",
+      "complexity": 7,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]/x1+c[1]",
+      "complexity": 5,
+      "mse": 3.3828746
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\nFrom the given dataset, the relationship between the dependent and independent variable seems to be an inverse relationship, meaning that as the value of x1 increases, the value of y decreases. This kind of relationship can be generally modelled by equations of the form y = c0 + c1/x1, y = c0 - c1*x1 or y = c0/x1 + c1. However, to ensure diversity and not to suggest SR-similar expressions, I need to modify these equations slightly. Also, the complexity should remain as low as possible.\n\n1. An equation of the form: y = c0 + c1*x1. This equation is simple and may be able to capture the inverse relationship between x1 and y. \n\n2. An equation of the form: y = c0 * x1 + c1. This equation is slightly more complex but may still be able to capture the inverse relationship between x1 and y.\n\n3. An equation of the form: y = c0 - c1/x1. This equation is a bit more complex but should be able to model the inverse relationship more accurately.",
+  "New equations generated": [
+    "c[0]+c[1]*x1",
+    "c[0]*x1+c[1]",
+    "c[0]-c[1]/x1"
+  ]
+}
+{
+  "Iteration number": 6,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/(1/x1)",
+      "complexity": 7,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]/x1+c[1]",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    }
+  ],
+  "LLM Thoughts": "Given the Pareto front provided, there are already three equations and each one of them has a different structure. However, based on the given constraints, we can still generate a few diverse equations that are not SR-similar to the existing ones. \n\nLet's consider the following suggestions:\n\n1. An equation with 2 constants, using addition and division: c[0] + c[1]/x1\n2. An equation with 2 constants, using subtraction and multiplication: c[0] - c[1]*x1\n3. An equation with 2 constants, using addition and multiplication: c[0] + c[1]*x1",
+  "New equations generated": [
+    "c[0]+c[1]/x1",
+    "c[0]-c[1]*x1",
+    "c[0]+c[1]*x1"
+  ]
+}
+{
+  "Iteration number": 7,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/(1/x1)",
+      "complexity": 7,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]+c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    }
+  ],
+  "LLM Thoughts": "Looking at the data, it appears that the value of y decreases as x1 increases, which suggests an inverse relationship. The existing equations already contain variants of the inverse relationship (c[0] \u00b1 c[1]/x1), as well as a more complex version (c[0]-c[1]/(1/x1)).\n\nIn order to generate diverse expressions that are not SR-similar to the existing ones, I will consider variations that include the multiplication of x1 and the combination of multiple simple expressions.\n\nSince the existing equations have complexities of 5 and 7, I will aim to generate equations with complexities of 3, 4, and 6 to fill the gaps.\n\nHere are my suggestions:\n\n1. For complexity 3, I suggest a simple inverse relationship with a positive constant: 'c[0] + 1/x1'.\n2. For complexity 4, I suggest a simple inverse relationship with a negative constant: 'c[0] - 1/x1'.\n3. For complexity 6, I suggest a combination of two simple inverse relationships with different constants: 'c[0]/x1 + c[1]/x1'.\n\nPlease note that these suggestions are based on the observed pattern in the data and the existing equations. They may not necessarily yield lower MSE values, but they offer diverse alternatives that are not SR-similar to the existing equations.",
+  "New equations generated": [
+    "c[0]+1/x1",
+    "c[0]-1/x1",
+    "c[0]/x1+c[1]/x1"
+  ]
+}
+{
+  "Iteration number": 8,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/(1/x1)",
+      "complexity": 7,
+      "mse": 6.8841212
+    },
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]+c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\nLooking at the given dataset, we can observe a pattern where y decreases as x1 increases. The three equations from the Pareto front also hint towards similar patterns, mostly involving inverse relations. \n\nWe need to suggest three new diverse equations that minimize complexity and loss, and they should not be SR-similar to the existing ones. \n\nLet's consider the following patterns:\n\n1. For the first equation, let's continue with the inverse relation but introduce a multiplication operator as well.\n2. For the second equation, we can try an addition of two fractions.\n3. For the third equation, let's try a combination of multiplication and division.\n\nLet's ensure these new equations are not SR-similar to the existing ones. For example, the first equation should not be equivalent to c[0]-c[1]/x1 or c[0]/(1/x1) after fitting the constants. The same applies for the other two equations.",
+  "New equations generated": [
+    "c[0]+c[1]/(x1*c[2])",
+    "c[0]/(c[1]/x1+c[2])",
+    "c[0]*x1/(c[1]+x1)"
+  ]
+}
+{
+  "Iteration number": 9,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]/(c[1]/x1+c[2])",
+      "complexity": 7,
+      "mse": 0.12263081
+    },
+    {
+      "equation": "c[0]*x1/(c[1]+x1)",
+      "complexity": 7,
+      "mse": 0.12263081
+    }
+  ],
+  "LLM Thoughts": "Scratchpad:\nFrom the provided dataset, it is clear that the y values decrease as x1 values increase which indicates that there is likely a non-linear relationship between the two. Since the restriction is to use only the four basic operators (+, -, *, /) and constants (c0, c1, etc.), we will focus on generating expressions using these elements.\n\nThe already provided expressions are:\n1. c[0]+c[1]/x1\n2. c[0]/(c[1]/x1+c[2])\n3. c[0]*x1/(c[1]+x1)\n\nLooking at these expressions, we can see that they all involve division operations, which seems to fit the data well given its decreasing nature. However, we want to generate diverse expressions, so we will try to use other operations as well.\n\nWe can generate a few expressions that are relatively simple but might fit the data well:\n\n1. c[0]-c[1]*x1: This is a simple linear expression where y decreases as x1 increases.\n2. c[0]/(c[1]*x1): This is a similar expression to the ones already provided, but it involves multiplication in the denominator instead of addition or subtraction.\n3. c[0]-c[1]/x1: This is another simple linear expression, but this time involving division.",
+  "New equations generated": [
+    "c[0]-c[1]*x1",
+    "c[0]/(c[1]*x1)",
+    "c[0]-c[1]/x1"
+  ]
+}
+{
+  "Iteration number": 10,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]/(c[1]/x1+c[2])",
+      "complexity": 7,
+      "mse": 0.12263081
+    },
+    {
+      "equation": "c[0]*x1/(c[1]+x1)",
+      "complexity": 7,
+      "mse": 0.12263081
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nLooking at the current equations, they already have a low complexity and a decently low mean squared error (MSE). We need to propose new equations that are not SR-similar to these, but also have low complexity and MSE.\n\nGiven the restrictions, the equations can only use the four basic arithmetic operations and the single independent variable, x1. Constants are represented as c0, c1, etc.\n\nThe given equations involve the operations of subtraction, division, and multiplication. To generate diverse equations, I will try to include addition and various combinations of the basic operations.\n\nTo maintain low complexity, we should keep the total number of operations and terms to a minimum. This means that we should avoid using more than one constant in each equation and limit the number of operations involving x1.\n\nTo generate equations with potentially low MSE, we should consider the patterns in the data. The values for both the dependent and independent variables are decreasing. This suggests that an equation with a negative slope may fit the data well.\n\nPossible equations:\n1. c0 - x1 * c1\n2. c0 / (x1 + c1)\n3. c0 + x1 / c1",
+  "New equations generated": [
+    "c[0]-x1*c[1]",
+    "c[0]/(x1+c[1])",
+    "c[0]+x1/c[1]"
+  ]
+}
+{
+  "Iteration number": 11,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]/(c[1]/x1+c[2])",
+      "complexity": 7,
+      "mse": 0.12263081
+    },
+    {
+      "equation": "c[0]*x1/(c[1]+x1)",
+      "complexity": 7,
+      "mse": 0.12263081
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nThe dataset seems to show an inverse relationship between the dependent and independent variables. The previous equations also seem to suggest some form of division by x1. \n\nFollowing the restrictions, an attempt will be made to keep the expressions simple, but also diverse. \n\nThe first equation 'c[0]-c[1]/x1' has a complexity of 5 and is the simplest of all three. However, we can try a similar form but by multiplying instead of subtracting.\n\nThe second and third equations 'c[0]/(c[1]/x1+c[2])' and 'c[0]*x1/(c[1]+x1)' are more complex but have the same MSE. Here, we can try to simplify the denominator by removing the additional constant or the division by x1.\n\nWe should also try a more complex equation, for example by adding another division by x1 to the first simple equation.",
+  "New equations generated": [
+    "c[0]-c[1]*x1",
+    "c[0]/(c[1]*x1)",
+    "c[0]/x1-c[1]/x1"
+  ]
+}
+{
+  "Iteration number": 12,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]/(c[1]/x1+c[2])",
+      "complexity": 7,
+      "mse": 0.12263081
+    },
+    {
+      "equation": "c[0]*x1/(c[1]+x1)",
+      "complexity": 7,
+      "mse": 0.12263081
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nThe current expressions seem to be divided into three categories: \n1. 'c[0]-c[1]/x1' which is a linear combination of constants and inverses of x1.\n2. 'c[0]/(c[1]/x1+c[2])' which is a reciprocal function of x1.\n3. 'c[0]*x1/(c[1]+x1)' which is a variation of the Michaelis-Menten equation.\n\nFrom the given restrictions, it is clear that we can only use the four basic operators and no complex unary functions. It is also important to avoid suggesting SR-similar expressions. \n\nTherefore, I will attempt to suggest expressions that are different from the existing ones and yet simple and potentially have a good fit with the data.\n\nThree new potential expressions could be:\n1. A simple linear combination of x1 and a constant (c[0] + c[1] * x1). This is the simplest form and different from the existing ones.\n2. A reciprocal function with a different form from the existing one such as c[0] / (c[1] * x1 + c[2]).\n3. A variation of the Michaelis-Menten equation with a different form from the existing one such as c[0] * x1 / (c[1] * x1 + c[2]).",
+  "New equations generated": [
+    "c[0]+c[1]*x1",
+    "c[0]/(c[1]*x1+c[2])",
+    "c[0]*x1/(c[1]*x1+c[2])"
+  ]
+}
+{
+  "Iteration number": 13,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]*x1/(c[1]*x1+c[2])",
+      "complexity": 9,
+      "mse": 0.12263081
+    },
+    {
+      "equation": "c[0]*x1/(c[1]+x1)",
+      "complexity": 7,
+      "mse": 0.12263081
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nLooking at the provided dataset and given equations, I can see that the target variable y seems to decrease as x1 increases. This indicates an inverse relationship between the two variables. \n\nThe currently provided equations with the lowest mse are \"c[0]*x1/(c[1]*x1+c[2])\" and \"c[0]*x1/(c[1]+x1)\". They have the same mse but different complexities, which suggests that the second equation is a simpler model with similar performance, hence it is more desirable. \n\nHowever, we are asked to provide alternative, diverse equations. We need to devise expressions that are different from the ones already provided, yet still capture the underlying relationship between y and x1. \n\nI will generate three new diverse equations based on the patterns in the data while adhering to the provided guidelines. \n\nNote: I will ensure that these equations are not SR-similar to the already provided equations.",
+  "New equations generated": [
+    "c[0]*x1-c[1]/x1",
+    "c[0]/(x1+c[1]+c[2])",
+    "c[0]/(c[1]*x1+c[2])"
+  ]
+}
+{
+  "Iteration number": 14,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]*x1/(c[1]*x1+c[2])",
+      "complexity": 9,
+      "mse": 0.12263081
+    },
+    {
+      "equation": "c[0]*x1/(c[1]+x1)",
+      "complexity": 7,
+      "mse": 0.12263081
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nLooking at the current equations, there are a few patterns to note. Two of the equations feature a division operation with x1 in the denominator, and one equation has x1 in the numerator. All equations have a complexity between 5 to 9 and mean squared error (mse) between 0.122 and 3.382.\n\nNew equations should maintain this complexity range and strive for a lower mse. They should also be diverse compared to the existing ones and not SR-similar. It would be interesting to explore more variations of division and multiplication involving x1, and also some use of subtraction and addition. Considering these points, the following equations are proposed:\n\n1. c0*x1 - c1\n2. c0 / (x1 + c1)\n3. c0*x1*c1",
+  "New equations generated": [
+    "c[0]*x1-c[1]",
+    "c[0]/(x1+c[1])",
+    "c[0]*x1*c[1]"
+  ]
+}
+{
+  "Iteration number": 15,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]-c[1]/x1",
+      "complexity": 5,
+      "mse": 3.3828746
+    },
+    {
+      "equation": "c[0]*x1/(c[1]*x1+c[2])",
+      "complexity": 9,
+      "mse": 0.12263081
+    },
+    {
+      "equation": "c[0]*x1/(c[1]+x1)",
+      "complexity": 7,
+      "mse": 0.12263081
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nLooking at the provided dataset and existing equations, I notice that the expressions with a lower mean squared error (mse) involve the division operation and the variable x1 in the denominator. This suggests that the relationship between y and x1 may be inversely proportional or have an inverse component. \n\nWith this in mind, I will propose three different expressions that adhere to the given restrictions and use the division operation. I will also aim to maintain low complexity while attempting to reduce the mse. \n\nThe first expression will be a simple inversely proportional relationship with a single constant. \n\nThe second expression will involve a division operation with a more complex denominator to potentially better capture the non-linear relationship. \n\nThe third expression will involve multiplication of x1 with a constant divided by a different constant to add more flexibility in modelling the relationship.",
+  "New equations generated": [
+    "c[0]/x1",
+    "c[0]/(c[1]*x1+c[2])",
+    "c[0]*x1/c[1]"
+  ]
+}
