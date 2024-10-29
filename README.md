@@ -1,5 +1,7 @@
 # LLMs for SR
 
+Link to preprint: https://arxiv.org/abs/2410.17448
+
 The 3 Jupyter Notebooks showcases different methods used in the paper:
   - generalWorkflow.ipynb: General workflow for the benchmark datasets (Bode, Hubble, Kepler, Langmuir).
     Uses prompt_ADSC.py, fittingClass_general and experiment.py
