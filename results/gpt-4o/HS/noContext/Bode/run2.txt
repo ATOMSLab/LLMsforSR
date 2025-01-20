@@ -1,0 +1,866 @@
+Final Results:
+{
+  "equation": "c[0]/(c[1]+sqrt(x1))",
+  "complexity": 6,
+  "mse": Infinity
+}
+{
+  "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+  "complexity": 11,
+  "mse": 7.81677557
+}
+{
+  "equation": "exp(c[0]*x1)",
+  "complexity": 4,
+  "mse": 1.32407086
+}
+{
+  "equation": "c[0]/(1+c[1]*x1)",
+  "complexity": 7,
+  "mse": 1.10985113
+}
+{
+  "equation": "c[0]+log(c[1]+exp(c[2]*x1))",
+  "complexity": 9,
+  "mse": 0.9920497
+}
+{
+  "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+  "complexity": 10,
+  "mse": 0.03627169
+}
+{
+  "equation": "c[0]*exp(c[1]*x1)/(c[2]+c[3]*exp(c[4]*x1))",
+  "complexity": 15,
+  "mse": 0.03353886
+}
+{
+  "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+  "complexity": 12,
+  "mse": 0.02492491
+}
+{
+  "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1+c[3]*x1**2)",
+  "complexity": 18,
+  "mse": 0.02295313
+}
+{
+  "equation": "c[0]*exp(c[1]*x1)+c[2]",
+  "complexity": 8,
+  "mse": 0.0068813
+}
+{
+  "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+  "complexity": 14,
+  "mse": 0.00657904
+}
+Cost for this run: $0.167005
+Total chain run time: 101.31482195854187 seconds.
+
+
+Iteration Information:
+{
+  "Iteration number": "Seed",
+  "SciPy feedback": "None",
+  "LLM Initial Thoughts": "Scratch Pad:\n\n1. Observing the dataset:\n   - x1: [-1000, 0, 1, 2, 3, 4, 5, 6]\n   - y: [0.39, 0.72, 1.0, 1.52, 2.77, 5.2, 9.58, 19.22]\n\n2. Identifying the trend:\n   - The y values increase rapidly for positive values of x1, suggesting an exponential or polynomial relation.\n   - y starts from a small value and increases significantly, indicating possible polynomial growth or exponential growth.\n\n3. Possible expression forms:\n   - Polynomial expressions: y = c0 + c1 * x1 + c2 * x1^2\n   - Exponential expressions: y = exp(c0 * x1)\n   - Considering logarithmic expressions seems less appropriate due to the rapid increase, but possible: y = log(c0 + c1 * x1)\n   - The negative x1 value (-1000) with a positive y value (0.39) suggests a need for careful handling in expressions.\n\n4. Expression considerations:\n   - Quadratic or cubic forms may fit well given the nature of data.\n   - Exponential form might capture the rapid increase after x1 = 3.\n   - Avoid using expressions that result in undefined operations (e.g., log of a negative number).\n\n5. Testing simple forms:\n   - y = c0 + c1 * x1 + c2 * x1^2 for a polynomial fit\n   - y = exp(c0 * x1) for exponential behavior\n   - y = sqrt(c0 * x1 + c1) for a combination of growth and transformation",
+  "New equations generated": [
+    "c[0]+c[1]*x1+c[2]*x1**2",
+    "exp(c[0]*x1)",
+    "sqrt(c[0]*x1+c[1])"
+  ]
+}
+{
+  "Iteration number": 1,
+  "SciPy feedback": [
+    {
+      "equation": "sqrt(c[0]*x1+c[1])",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nGiven the dataset and previously suggested equations, we want to find new expressions that are both simple (low complexity) and have a low mean squared error (MSE). The dataset suggests an exponential growth pattern, particularly as x1 increases. The data points seem to follow an exponential pattern, especially since the last data point (x1 = 6, y = 19.22) suggests a rapid increase.\n\nThe previously suggested equations:\n1. `sqrt(c[0]*x1+c[1])` has infinite MSE, indicating it may not capture the rapid growth, especially at higher values of x1.\n2. `c[0]+c[1]*x1+c[2]*x1**2` has a high MSE of 7.81677557, suggesting a polynomial might not be suitable for fitting this data.\n3. `exp(c[0]*x1)` has a much lower MSE of 1.32407086, indicating that an exponential form is more appropriate for this dataset.\n\nFor new suggestions, we should look for variations of exponential growth or possibly combinations that introduce multiplicative or additive factors to better capture the nuance of the data. Additionally, we will strive for simplicity by minimizing complexity.\n\n1. Consider an exponential with a linear bias: `c[0] * exp(c[1]*x1) + c[2]`.\n2. Consider a polynomial form combined with an exponential: `c[0] * x1 * exp(c[1]*x1)`.\n3. Consider a log-based transformation to convert multiplicative factors into additive ones: `c[0] * log(c[1] + x1)`.\n\nThese suggestions aim to capture the exponential growth pattern while exploring different mathematical forms to minimize redundancy and improve fit.",
+  "New equations generated": [
+    "c[0]*exp(c[1]*x1)+c[2]",
+    "c[0]*x1*exp(c[1]*x1)",
+    "c[0]*log(c[1]+x1)"
+  ]
+}
+{
+  "Iteration number": 2,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]*log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nLet's start by analyzing the given data. The independent variable x1 ranges from -1000 to 6, and the dependent variable y shows an exponential-like pattern as x1 increases from 0 to 6, and a relatively flat response when x1 is -1000. \n\nGiven this behavior, exponential or logarithmic expressions are likely to fit well. However, we should also consider polynomials or other non-linear transformations due to the restrictions and the need for diversity.\n\n1. The previously suggested expression 'exp(c[0]*x1)' with complexity 4 and mse of 1.32407086 is quite simple and performs reasonably well. \n\n2. The expression 'c[0]*exp(c[1]*x1)+c[2]' with complexity 8 and mse of 0.0068813 shows a much better fit with increased complexity.\n\n3. Polynomial expressions such as 'c[0]+c[1]*x1+c[2]*x1**2' have a complexity of 11 and a higher mse of 7.81677557, indicating that quadratic terms are not capturing the pattern well enough. \n\nFor new suggestions, we should aim to find expressions that are:\n- Simpler than 'c[0]*exp(c[1]*x1)+c[2]' but with better mse than 'exp(c[0]*x1)'.\n- Diverse in their approach to fitting the data, possibly using different unary operators or combinations.\n\nPotential New Equations:\n1. Include square or cube transformations: These can help capture non-linear patterns.\n   - Example: c[0] + c[1]*x1 + c[2]*x1^3\n\n2. Use logarithms to capture the initial flat response and exponential growth:\n   - Example: c[0] + c[1]*log(abs(x1 + c[2]))\n\n3. Consider combinations of exp with polynomial terms:\n   - Example: c[0]*exp(c[1]*x1) + c[2]*x1",
+  "New equations generated": [
+    "c[0]+c[1]*x1+c[2]*x1**3",
+    "c[0]+c[1]*log(abs(x1+c[2]))",
+    "c[0]*exp(c[1]*x1)+c[2]*x1"
+  ]
+}
+{
+  "Iteration number": 3,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]*log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*log(abs(x1+c[2]))",
+      "complexity": 9,
+      "mse": 34.23376884
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]*x1",
+      "complexity": 10,
+      "mse": 0.04423256
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. Start by examining the dataset:\n   - Dependent variable, y: [0.39, 0.72, 1.0, 1.52, 2.77, 5.2, 9.58, 19.22]\n   - Independent variable, x1: [-1000, 0, 1, 2, 3, 4, 5, 6]\n\n2. Review provided equations and their metrics:\n   - 'c[0]*log(c[1]+x1)', complexity: 6, mse: inf\n   - 'c[0]+c[1]*log(abs(x1+c[2]))', complexity: 9, mse: 34.23376884\n   - 'c[0]+c[1]*x1+c[2]*x1**2', complexity: 11, mse: 7.81677557\n   - 'exp(c[0]*x1)', complexity: 4, mse: 1.32407086\n   - 'c[0]*exp(c[1]*x1)+c[2]*x1', complexity: 10, mse: 0.04423256\n   - 'c[0]*exp(c[1]*x1)+c[2]', complexity: 8, mse: 0.0068813\n\n3. Aim to find new expressions that minimize both complexity and loss, while being diverse from the above solutions.\n\n4. Observations and ideas for new expressions:\n   - Consider a polynomial expression that is simpler than the quadratic one but introduces a cubic term for potential better fitting.\n   - Introduce a multiplicative inverse or division for diversity.\n   - Consider using logarithmic transformations, given the wide range of x1 values, while ensuring it's different from previously provided log-based expressions.\n\n5. Candidate expressions:\n   - Try a cubic polynomial: \"c0 + c1*x1 + c2*x1^3\", which introduces non-linearity while being different from quadratic.\n   - Use division to potentially capture inverse relationships: \"c0 / (1 + c1*x1)\"\n   - Explore a logarithmic transformation with addition: \"c0 + log(c1 + x1)\" to differentiate from previous log-based forms.",
+  "New equations generated": [
+    "c[0]+c[1]*x1+c[2]*x1**3",
+    "c[0]/(1+c[1]*x1)",
+    "c[0]+log(c[1]+x1)"
+  ]
+}
+{
+  "Iteration number": 4,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*log(abs(x1+c[2]))",
+      "complexity": 9,
+      "mse": 34.23376884
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]*x1",
+      "complexity": 10,
+      "mse": 0.04423256
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. **Analyzing the dataset:**\n   - The dependent variable `y` shows a rapid increase, particularly noticeable for larger values of `x1`. This suggests an exponential relationship or polynomial growth could be present.\n   - For very small or negative values of `x1`, `y` is small but positive, which suggests the possibility of a logarithmic or inverse relationship as well.\n\n2. **Analyzing existing expressions:**\n   - The simplest expression with a reasonable fit is `exp(c[0]*x1)` with complexity 4.\n   - The best fitting equation so far is `c[0]*exp(c[1]*x1)+c[2]` with complexity 8 and a small MSE of 0.0068813.\n   - A polynomial form such as `c[0]+c[1]*x1+c[2]*x1**2` has higher complexity and worse fit (MSE: 7.81677557).\n\n3. **Constraints and Suggestions:**\n   - Avoid SR-similar expressions.\n   - Seek diverse expressions, minimizing complexity and MSE.\n\n4. **Formulating new equations:**\n   - Consider logarithmic and inverse variants since these can capture the initial small `y` values.\n   - Try combining polynomial and exponential terms in new ways.\n   - Consider expressions with square or cube terms due to polynomial growth potential.\n\n5. **New Candidate Expressions:**\n   - `c[0] * log(c[1] + x1) + c[2]`: Combines logarithmic growth with a constant shift.\n   - `c[0] / (c[1] + x1^2)`: An inverse relationship squared term.\n   - `c[0] * exp(c[1]*x1^0.5) + c[2]`: Uses square root in exponential form to capture rapid growth with less complexity.",
+  "New equations generated": [
+    "c[0]*log(c[1]+x1)+c[2]",
+    "c[0]/(c[1]+x1**2)",
+    "c[0]*exp(c[1]*x1**0.5)+c[2]"
+  ]
+}
+{
+  "Iteration number": 5,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*log(abs(x1+c[2]))",
+      "complexity": 9,
+      "mse": 34.23376884
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]*x1",
+      "complexity": 10,
+      "mse": 0.04423256
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. The dataset suggests an exponential growth pattern, as indicated by the previous equations with low MSE values.\n2. Simple exponential expressions like `exp(c[0]*x1)` have shown a good fit, suggesting that exponential terms are important.\n3. The best fitting equation from the previous set was `c[0]*exp(c[1]*x1)+c[2]` with MSE = 0.0068813.\n4. The structure `c[0]/(1+c[1]*x1)` also showed good performance with MSE = 1.10985113, indicating that rational expressions are useful.\n5. The quadratic expression `c[0]+c[1]*x1+c[2]*x1**2` was fairly accurate, suggesting that polynomial terms might capture some of the pattern.\n6. To avoid SR-similar expressions, I should consider combining these insights without repeating the exact forms.\n\nPossible new expressions:\n- Consider using combinations of exponential and polynomial forms to capture both rapid growth and curvature.\n- Explore combining rational forms with exponential terms to see if they offer better fits.\n- Avoid simple combinations of linear and quadratic forms to ensure diversity.\n\nCandidate expressions:\n1. A rational form combined with an exponential to capture rapid changes: `c0 * exp(c1 * x1) / (1 + c2 * x1)`\n2. A polynomial form with an exponential component to capture growth and curvature: `c0 + c1 * exp(c2 * x1) + c3 * x1^2`\n3. A rational form to handle potential asymptotic behavior: `c0 / (c1 + exp(c2 * x1))`",
+  "New equations generated": [
+    "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+    "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+    "c[0]/(c[1]+exp(c[2]*x1))"
+  ]
+}
+{
+  "Iteration number": 6,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*log(abs(x1+c[2]))",
+      "complexity": 9,
+      "mse": 34.23376884
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]*x1",
+      "complexity": 10,
+      "mse": 0.04423256
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00661071
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nTo suggest new equations that minimize both complexity and loss, we will look at the dataset and the current expressions to find opportunities for improvement. The current expressions range from simple logarithmic and polynomial ones to more complex ones involving exponentials and divisions.\n\n1. Observations from the dataset:\n   - The data shows rapid growth, especially from x1=4 to x1=6, indicating a possible exponential or polynomial relationship.\n   - We have a mix of exponential and polynomial functions already, so exploring combinations or variations with the existing operators may yield new insights.\n\n2. Current Pareto front analysis:\n   - The expression 'exp(c[0]*x1)' is quite simple with low complexity (4) and reasonably low MSE (1.32407086). This suggests that exponential growth is a significant feature of the dataset.\n   - The expression 'c[0]*exp(c[1]*x1)+c[2]' has a complexity of 8 and very low MSE (0.0068813), indicating it captures the data well with an exponential base form.\n   - Exploring combinations of exponential and polynomial forms might yield better results.\n\n3. New suggestions:\n   - We can try a simpler exponential form with an added linear term: c[0] + c[1]*exp(x1) + c[2]*x1.\n   - A transformation using square root could introduce non-linearity beneficial for fitting: c[0] + c[1]*sqrt(x1) + c[2]*exp(x1).\n   - Trying a rational function might be useful given the success of 'c[0]/(1+c[1]*x1)': c[0]/(1+c[1]*exp(x1)).\n   - Exploring an expression with cube could capture higher-order effects: c[0] + c[1]*x1 + c[2]*x1^3.\n\n4. Ensure distinctiveness:\n   - Ensure no redundancy with existing expressions by varying the use of operators and combining different forms uniquely.",
+  "New equations generated": [
+    "c[0]+c[1]*exp(x1)+c[2]*x1",
+    "c[0]+c[1]*sqrt(x1)+c[2]*exp(x1)",
+    "c[0]/(1+c[1]*exp(x1))"
+  ]
+}
+{
+  "Iteration number": 7,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*log(abs(x1+c[2]))",
+      "complexity": 9,
+      "mse": 34.23376884
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]*x1",
+      "complexity": 10,
+      "mse": 0.04423256
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00661071
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. Let's analyze the existing equations in terms of complexity and MSE:\n   - `c[0]+log(c[1]+x1)`: High complexity with infinite MSE, likely due to domain issues with log.\n   - `c[0]+c[1]*log(abs(x1+c[2]))`: Complexity 9, MSE 34.233, not very accurate.\n   - `c[0]+c[1]*x1+c[2]*x1**2`: Complexity 11, MSE 7.817, decent quadratic fit.\n   - `exp(c[0]*x1)`: Complexity 4, MSE 1.324, simple exponential, promising.\n   - `c[0]/(1+c[1]*x1)`: Complexity 7, MSE 1.110, rational function, promising.\n   - `c[0]*exp(c[1]*x1)+c[2]*x1`: Complexity 10, MSE 0.044, highly accurate.\n   - `c[0]*exp(c[1]*x1)/(1+c[2]*x1)`: Complexity 12, MSE 0.025, balanced fit.\n   - `c[0]*exp(c[1]*x1)+c[2]`: Complexity 8, MSE 0.007, simple and accurate.\n   - `c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2`: Complexity 14, MSE 0.007, highest complexity but very accurate.\n\n2. Based on the above, we aim to propose new equations that balance complexity and loss while being diverse:\n   - Consider using combinations of exponential and polynomial forms.\n   - Explore the use of square and cube functions to introduce non-linearity.\n\n3. Some potential candidates:\n   - A combination of exponential and quadratic forms without being SR-similar to existing ones.\n   - A rational function involving squares or cubes.\n   - A form involving logarithms but ensuring domain issues are handled.\n\n4. Suggested New Expressions:\n   - `c[0]*x1^2 + c[1]*exp(x1)`: Combines polynomial and exponential growth.\n   - `c[0]*exp(x1)/(c[1] + x1^2)`: A rational form with polynomial denominator.\n   - `c[0] + c[1]*sqrt(x1) + c[2]*x1^3`: Uses square root and cubic terms for complexity.",
+  "New equations generated": [
+    "c[0]*x1**2+c[1]*exp(x1)",
+    "c[0]*exp(x1)/(c[1]+x1**2)",
+    "c[0]+c[1]*sqrt(x1)+c[2]*x1**3"
+  ]
+}
+{
+  "Iteration number": 8,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*log(abs(x1+c[2]))",
+      "complexity": 9,
+      "mse": 34.23376884
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+      "complexity": 10,
+      "mse": 0.03627169
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00661071
+    }
+  ],
+  "LLM Thoughts": "Scratch pad:\n\n1. **Understanding the Dataset:** \n   - The dependent variable `y` shows a rapid increase as `x1` increases, which indicates an exponential or polynomial growth pattern.\n\n2. **Review of Previous Equations:**\n   - The previous equations show a range of complexities from 4 to 14 with varying MSE.\n   - Lower complexity expressions with better MSE are preferred. \n\n3. **Analyzing Patterns:**\n   - The pattern suggests exponential growth (as seen in lower MSE equations like `exp(c[0]*x1)` and `c[0]*exp(c[1]*x1)/(1+c[2]*x1)`).\n   - Quadratic and rational expressions are other candidates given their historical performance.\n\n4. **Objective:** \n   - Minimize complexity while maintaining or reducing MSE.\n   - Ensure expressions are not SR-similar to previous successful ones.\n\n5. **Candidate Expressions:**\n   - We need one expression that utilizes exponential growth, one rational expression, and one polynomial (to ensure diversity).\n   - Ensure none of the expressions are SR-similar to previously suggested ones.\n\n6. **Suggested Expressions:**\n   - Rational form similar to `c[0]/(1+c[1]*x1)` but slightly different to avoid SR-similarity.\n   - Exponential form inspired by `exp(c[0]*x1)` and `c[0]*exp(c[1]*x1)`, but distinct.\n   - Polynomial form with complexity less than 14 and not SR-similar to `c[0]+c[1]*x1+c[2]*x1**2`.",
+  "New equations generated": [
+    "c[0]*exp(x1)/(1+c[1]*x1**2)",
+    "c[0]*exp(c[1]*x1**2)",
+    "c[0]+c[1]*x1+c[2]*x1**3"
+  ]
+}
+{
+  "Iteration number": 9,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*log(abs(x1+c[2]))",
+      "complexity": 9,
+      "mse": 34.23376884
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+      "complexity": 10,
+      "mse": 0.03627169
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00661071
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. Observing the given dataset, the dependent variable `y` increases rapidly as `x1` increases, especially after `x1 = 4`. This indicates a possible exponential relationship.\n\n2. The equations provided have varying complexities and mean squared errors (MSE). The goal is to suggest equations with lower complexity and MSE.\n\n3. The pattern of rapid increase in `y` suggests exponential or polynomial forms might be suitable. \n\n4. The best existing equations in terms of MSE are:\n   - 'c[0]*exp(c[1]*x1)+c[2]' with MSE = 0.0068813\n   - 'c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2' with MSE = 0.00661071\n   - 'c[0]*exp(c[1]*x1)/(1+c[2]*x1)' with MSE = 0.02492491\n\n5. We should consider the possibility of:\n   - Polynomial expressions such as quadratic or cubic terms.\n   - Modified exponential expressions with division.\n\n6. Suggestions should be diverse and not SR-similar to existing expressions.\n\nCandidate Equations:\n\n1. A quadratic polynomial with an exponential term:\n   - 'c[0] + c[1]*exp(c[2]*x1) + c[3]*x1^2'\n   \n2. A rational function with exponential terms in both numerator and denominator:\n   - 'c[0] * exp(c[1]*x1) / (c[2] + c[3]*exp(c[4]*x1))'\n\n3. A cubic polynomial with an exponential term:\n   - 'c[0] + c[1]*exp(c[2]*x1) + c[3]*x1^3'",
+  "New equations generated": [
+    "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+    "c[0]*exp(c[1]*x1)/(c[2]+c[3]*exp(c[4]*x1))",
+    "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**3"
+  ]
+}
+{
+  "Iteration number": 10,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*log(abs(x1+c[2]))",
+      "complexity": 9,
+      "mse": 34.23376884
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+      "complexity": 10,
+      "mse": 0.03627169
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(c[2]+c[3]*exp(c[4]*x1))",
+      "complexity": 15,
+      "mse": 0.03353886
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00657904
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. **Observations**: \n   - We have a set of equations with varying complexity and mean squared error (MSE).\n   - The goal is to suggest new equations that minimize both complexity and MSE.\n   - We need diverse expressions that are not SR-similar to existing ones.\n\n2. **Analysis**:\n   - The existing equations show a mix of polynomial, logarithmic, and exponential forms.\n   - The lowest MSE achieved is 0.00657904 with a complexity of 14.\n   - Simpler equations like exponentials and rational functions show better performance than polynomial fits.\n   - Very simple expressions like basic logarithmic and linear ones have high MSE.\n\n3. **Potential Ideas**:\n   - Consider expressions that mix exponentials with rational forms or addition.\n   - Try alternative polynomial expressions with logs or square roots.\n   - Use expressions involving divisions to possibly capture asymptotic behaviors in the data.\n\n4. **Expression Suggestions**:\n   - We should avoid expressions directly similar to exponential forms already present.\n   - Introduce diversity by using sqrt or cube, and possibly combinations of these with other operators.\n\n5. **Formulating New Expressions**:\n   - Try combining exponentials with polynomials in a novel way.\n   - Consider rational forms involving sqrt or cube.\n   - Test combinations that are less commonly used but still respecting the constraints.",
+  "New equations generated": [
+    "c[0]*x1/(c[1]+x1**2)",
+    "c[0]*exp(x1)/(c[1]+sqrt(x1))",
+    "c[0]+log(c[1]+exp(c[2]*x1))"
+  ]
+}
+{
+  "Iteration number": 11,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]+log(c[1]+x1)",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]+log(c[1]+exp(c[2]*x1))",
+      "complexity": 9,
+      "mse": 0.9920497
+    },
+    {
+      "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+      "complexity": 10,
+      "mse": 0.03627169
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(c[2]+c[3]*exp(c[4]*x1))",
+      "complexity": 15,
+      "mse": 0.03353886
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00657904
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. We have a mix of simple and complex expressions in the existing set. The simplest one, `exp(c[0]*x1)`, has a low complexity but a higher MSE, which shows simplicity might not capture the data well.\n\n2. The expression `c[0]*exp(x1)/(c[1]+x1**2)` has a good trade-off between complexity (10) and MSE (0.03627169), suggesting that combinations of exponential and polynomial terms are effective.\n\n3. The best expression in terms of MSE is `c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2`, but its complexity (14) is relatively high. \n\n4. We need to find new expressions that balance complexity and MSE while being diverse from existing expressions.\n\n5. Existing expressions are using combinations of exp, polynomial terms, and division. We can explore variations around these themes, ensuring they are not SR-similar to existing ones.\n\n6. Try adding new terms or combinations like:\n   - Including square or cube terms\n   - Combining log with polynomial or exponential terms\n   - Using nested functions like exp(log(...)) or sqrt(exp(...)) for diversity\n\n7. Consider expressions that use a different structure or combination of operations:\n   - `c[0] * log(1 + exp(c[1] * x1))` for a different way to use exp and log\n   - `exp(c[0] + c[1] * x1^2)` to introduce a square within an exponent\n   - `c[0] / (c[1] + sqrt(x1))` to add a sqrt term",
+  "New equations generated": [
+    "c[0]*log(1+exp(c[1]*x1))",
+    "exp(c[0]+c[1]*x1**2)",
+    "c[0]/(c[1]+sqrt(x1))"
+  ]
+}
+{
+  "Iteration number": 12,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]/(c[1]+sqrt(x1))",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]+log(c[1]+exp(c[2]*x1))",
+      "complexity": 9,
+      "mse": 0.9920497
+    },
+    {
+      "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+      "complexity": 10,
+      "mse": 0.03627169
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(c[2]+c[3]*exp(c[4]*x1))",
+      "complexity": 15,
+      "mse": 0.03353886
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00657904
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. Review of past suggestions:\n   - The equation 'c[0]*exp(c[1]*x1)+c[2]' has a low MSE of 0.0068813 and a complexity of 8. This suggests exponential growth with an additive constant could be a good fit.\n   - The equation 'c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2' also has a low MSE of 0.00657904 but higher complexity (14), indicating that adding a quadratic term may slightly improve the fit.\n   - 'c[0]*exp(c[1]*x1)/(1+c[2]*x1)' has a low MSE of 0.02492491 with moderate complexity (12), suggesting a rational function form with exponential growth could be beneficial.\n   - Simple exponential forms like 'exp(c[0]*x1)' and 'c[0]/(1+c[1]*x1)' have higher MSEs, implying that more complexity might be necessary for better fitting.\n\n2. Dataset Analysis:\n   - The dependent variable, y, increases rapidly, suggesting an exponential growth pattern.\n   - The values of y increase significantly as x1 increases from 0 to 6.\n\n3. New Suggestions:\n   - To maintain diversity, consider variations on the exponential theme and introduce polynomial or rational modifications.\n   - Try a higher degree polynomial in x1 within the exponential to capture rapid growth.\n   - Consider combining exponential and polynomial terms differently to achieve lower MSE while keeping complexity in check.\n\nPotential New Equations:\n1. Combine exponential with a polynomial: `c[0]*exp(c[1]*x1) + c[2]*x1^2`\n2. Rational form with polynomial: `c[0]*x1^2/(1 + c[1]*exp(c[2]*x1))`\n3. Exponential divided by a polynomial: `c[0]*exp(c[1]*x1) / (1 + c[2]*x1 + c[3]*x1^2)`",
+  "New equations generated": [
+    "c[0]*exp(c[1]*x1)+c[2]*x1**2",
+    "c[0]*x1**2/(1+c[1]*exp(c[2]*x1))",
+    "c[0]*exp(c[1]*x1)/(1+c[2]*x1+c[3]*x1**2)"
+  ]
+}
+{
+  "Iteration number": 13,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]/(c[1]+sqrt(x1))",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]+log(c[1]+exp(c[2]*x1))",
+      "complexity": 9,
+      "mse": 0.9920497
+    },
+    {
+      "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+      "complexity": 10,
+      "mse": 0.03627169
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(c[2]+c[3]*exp(c[4]*x1))",
+      "complexity": 15,
+      "mse": 0.03353886
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1+c[3]*x1**2)",
+      "complexity": 18,
+      "mse": 0.0238477
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00657904
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\n1. The dataset appears exponential in nature given the rapid increase in y values as x1 increases.\n2. The existing equations with lower mse, such as `'c[0]*exp(c[1]*x1)+c[2]'`, demonstrate that exponential functions are likely suitable for this problem.\n3. We need to propose new equations, minimizing both complexity and loss, without being SR-similar to those already provided.\n4. Avoid SR-similar expressions by introducing unique combinations of operations or structures.\n5. Consider using combinations of exponential, polynomial, and logarithmic functions to diversify the expressions.\n6. To maintain diversity, consider different algebraic structures like product, sum, and quotient of functions.\n\nProposed New Equations:\n\n1. Use a polynomial added to an exponential function: 'c[0]*x1 + c[1]*exp(c[2]*x1)'.\n2. Use a quotient of exponential and polynomial terms: 'c[0]*exp(x1)/(c[1]+c[2]*x1^2)'.\n3. Use a logarithmic transformation with polynomial: 'c[0] + log(c[1]*x1^2 + c[2])'.\n\nThese suggestions aim to balance complexity and accuracy, while maintaining diversity from the existing set of equations.",
+  "New equations generated": [
+    "c[0]*x1+c[1]*exp(c[2]*x1)",
+    "c[0]*exp(x1)/(c[1]+c[2]*x1**2)",
+    "c[0]+log(c[1]*x1**2+c[2])"
+  ]
+}
+{
+  "Iteration number": 14,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]/(c[1]+sqrt(x1))",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]+log(c[1]+exp(c[2]*x1))",
+      "complexity": 9,
+      "mse": 0.9920497
+    },
+    {
+      "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+      "complexity": 10,
+      "mse": 0.03627169
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(c[2]+c[3]*exp(c[4]*x1))",
+      "complexity": 15,
+      "mse": 0.03353886
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1+c[3]*x1**2)",
+      "complexity": 18,
+      "mse": 0.0238477
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00657904
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n\nGiven the dataset and the previously suggested equations, we want to find new expressions that are both diverse and competitive in terms of complexity and mean squared error (MSE).\n\n1. Observing the dataset:\n   - The y values seem to grow rapidly, indicating a potential exponential relationship with x1.\n   - The x1 values include a large negative value (-1000) and smaller values ranging from 0 to 6.\n\n2. Reviewing the existing equations:\n   - The simpler expressions like 'exp(c[0]*x1)' have relatively low complexity but higher MSE.\n   - More complex expressions like 'c[0]*exp(c[1]*x1)/(1+c[2]*x1+c[3]*x1^2)' have lower MSE but higher complexity.\n\n3. Strategy for new equations:\n   - Consider exponential components due to the rapid growth in y values.\n   - Introduce diversity by using different combinations of operators and functions.\n   - Avoid redundancy by ensuring the new expressions are not SR-similar to existing ones.\n\n4. Possible new expressions:\n   a. \"c0 * x1^2 + c1 * exp(x1)\" - Combines polynomial and exponential growth.\n   b. \"c0 / (c1 + exp(c2 * x1))\" - Uses a rational form with an exponential denominator.\n   c. \"c0 * log(1 + c1 * x1) + c2\" - Incorporates a logarithmic component for a different growth pattern.",
+  "New equations generated": [
+    "c[0]*x1**2+c[1]*exp(x1)",
+    "c[0]/(c[1]+exp(c[2]*x1))",
+    "c[0]*log(1+c[1]*x1)+c[2]"
+  ]
+}
+{
+  "Iteration number": 15,
+  "SciPy feedback": [
+    {
+      "equation": "c[0]/(c[1]+sqrt(x1))",
+      "complexity": 6,
+      "mse": Infinity
+    },
+    {
+      "equation": "c[0]+c[1]*x1+c[2]*x1**2",
+      "complexity": 11,
+      "mse": 7.81677557
+    },
+    {
+      "equation": "exp(c[0]*x1)",
+      "complexity": 4,
+      "mse": 1.32407086
+    },
+    {
+      "equation": "c[0]/(1+c[1]*x1)",
+      "complexity": 7,
+      "mse": 1.10985113
+    },
+    {
+      "equation": "c[0]+log(c[1]+exp(c[2]*x1))",
+      "complexity": 9,
+      "mse": 0.9920497
+    },
+    {
+      "equation": "c[0]*exp(x1)/(c[1]+x1**2)",
+      "complexity": 10,
+      "mse": 0.03627169
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(c[2]+c[3]*exp(c[4]*x1))",
+      "complexity": 15,
+      "mse": 0.03353886
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1)",
+      "complexity": 12,
+      "mse": 0.02492491
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)/(1+c[2]*x1+c[3]*x1**2)",
+      "complexity": 18,
+      "mse": 0.0238477
+    },
+    {
+      "equation": "c[0]*exp(c[1]*x1)+c[2]",
+      "complexity": 8,
+      "mse": 0.0068813
+    },
+    {
+      "equation": "c[0]+c[1]*exp(c[2]*x1)+c[3]*x1**2",
+      "complexity": 14,
+      "mse": 0.00657904
+    }
+  ],
+  "LLM Thoughts": "Scratch Pad:\n1. Review the given dataset and previous suggestions to find a balance between complexity and accuracy.\n2. Look for equations that involve exponential growth, as the dataset shows exponential-like behavior with y increasing rapidly.\n3. Avoid SR-similar expressions to those provided in the analysis. \n4. Utilize the permitted operators and functions to suggest diverse formulas.\n5. Consider using combinations of exponential and polynomial components, as well as rational expressions with exponential terms, to capture the rapid growth pattern.\n\nPotential Expressions:\n- Use of exp(x1) with rational functions or polynomials.\n- Consider c0 * exp(c1 * x1) + c2 * x1 form, which combines exponential and polynomial components.\n- Use of rational functions like c0 / (1 + c1 * exp(c2 * x1)) to capture initial low values and rapid increase.",
+  "New equations generated": [
+    "c[0]*exp(c[1]*x1)/(1+c[2]*x1+c[3]*x1**2)",
+    "c[0]*exp(c[1]*x1)+c[2]*x1**2",
+    "c[0]/(1+c[1]*exp(c[2]*x1))"
+  ]
+}
