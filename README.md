@@ -2,7 +2,7 @@
 
 Link to preprint: https://arxiv.org/abs/2410.17448
 
-The 3 Jupyter Notebooks showcases different methods used in the paper:
+The 3 Jupyter Notebooks showcase different methods used in the paper:
   - generalWorkflow.ipynb: General workflow for the benchmark datasets (Bode, Hubble, Kepler, Langmuir).
     Uses prompt_ADSC.py, fittingClass_general and experiment.py
   
@@ -12,5 +12,6 @@ The 3 Jupyter Notebooks showcases different methods used in the paper:
   - nikuradse.ipynb: Workflow for Nikuradse.
     Uses prompt_nikuradse_p3.py, fittingClass_nik.py, and nikuradse class from experiment.py
 
-You will need an OpenAI API key for GPT-4 models to run this.
+
+The specific OpenAI GPT models used in this work are: `gpt-4-0613` and `gpt-4o-2024-08-06` 
 
