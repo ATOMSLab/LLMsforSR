@@ -1,0 +1,294 @@
+Test Leakage in DS_Langmuir-gpt4o-ES-noData
+
+============ run1.txt ============
+  -- Iteration 0 matches --
+    [keyword] 'Langmuir'
+      ...Scratch Pad:
+  1. Understanding the dataset: 
+   
+  - The task is to find expressions that describe the relationship between pressure (x1) and 
+  loading (y) in the adsorption process.   
+  - The goal is to approximate loading (y) as a function of pressure (x1), using the constraints provided.
+  2. Model considerations:   
+  - The expressions should be simple and interpretable.
+   
+  - Given the context of adsorption, the Langmuir isotherm model might be a potential candidate, 
+  which typically follows a form like y = (c0 * x1) / (c1 + x1).
+   
+  - Other potential models could include linear, polynomial, or rational forms, considering the 
+  constraints on operators and constants.
+
+
+  3. Initial thoughts on expressions:
+   
+  - Linear model: y = c0 * x1 + c1
+   - Rational model: y = (c0 * x1) / (c1 + x1)
+   
+  - Polynomial model: y = c0 * x1 + c1 * x1^2 (simplified to allowed operations)
+  4. Testing different forms:
+   
+  - Linear form might be too simplistic and not capture saturation.
+   
+  - Rational forms could capture saturation behavior.
+   
+  - Quadratic or other polynomial forms can provide a curve but may not reflect saturation.
+
+
+  5. Finalizing potential expressions:
+   
+  - Expression 1: Linear form, which could serve as a baseline or initial approximation.
+   
+  - Expression 2: Rational form resembling Langmuir isotherm.
+   
+  - Expression 3: A polynomial form within the constraints to capture no...
+  -- Iteration 24 matches --
+    [keyword] 'Langmuir'
+      ...Scratch Pad:
+
+Let's analyze the current Pareto front:
+
+1. (c[0]*x1)/(c[1]+x1) 
+   - Complexity: 7, MSE: 0.04670168
+
+2. c[0]*x1-c[1]
+   - Complexity: 5, MSE: 0.03418604
+
+3. c[0]*(x1/(c[1]+x1))+c[2]*(x1/(c[3]+x1*x1))
+   - Complexity: 17, MSE: 0.00506452
+
+4. c[0]*(x1+c[1])/(c[2]+x1)
+   - Complexity: 9, MSE: 0.00117965
+
+5. c[0]+c[1]*x1-c[2]/(c[3]+x1)
+   - Complexity: 11, MSE: 0.00108275
+
+6. c[0]*x1/(c[1]+x1)+c[2]-c[3]/x1
+   - Complexity: 13, MSE: 0.00078644
+
+7. c[0]*x1/(c[1]+x1)-c[2]/(c[3]+x1**2)
+   - Complexity: 15, MSE: 0.00023392
+
+Our goal is to suggest new equations with minimal complexity and loss. The current expressions are diverse, but we need to add more diversity while maintaining low MSE and complexity. Let's explore some potential expressions:
+
+- Consider using combinations and variations of existing forms without redundancy.
+- Use the fact that adsorption often follows Langmuir or Freundlich-like isotherms, which have rational forms.
+- Explore new terms or combinations that might capture additional variance without increasing complexity too much.
+- Avoid SR-similar expressions by ensuring any new formula can't be reduced or transformed into an existing one through constant fitting.
+
+Potential Suggestions:
+
+1. A single fraction with a linear term in the numerator and a quadratic term in the denominator:
+   - c[0]*x1/(c[1] + x1 + c[2]*x1**2)
+
+2. A rational form with multiple linear terms:
+   - (c[0]*x1 + c[1])/(c[2] + c[3]*x1)
+
+3. An expression combining linear and inverse terms:
+   - c[0]*x1 + c[1]/(c[2] + x1)
+
+Ensure these are not SR-similar to the existing equations by confirming their unique structural form, even after potential constant adjustments....
+  -- Iteration 47 matches --
+    [keyword] 'Langmuir'
+      ...lest form given is "c[0]*x1-c[1]" with a complexity of 5 and mse of 0.03418604, while the most complex one 
+  is "c[0]*x1/(c[1]+x1**2)+c[2]-c[3]*x1/(c[4]+x1)" with a complexity of 19 and mse of 0.00010791.
+
+
+  3. The task is to suggest three new equations that are not SR-similar to existing ones and maintain diversity while considering 
+  the constraints.
+
+
+  4. Review existing patterns:
+   
+  - Linear terms of x1 (e.g., c[0]*x1)
+   
+  - Inverse terms of x1 (e.g., c[1]/x1)
+   
+  - Rational expressions (e.g., c[0]+c[1]*x1/(c[2]+x1**2))
+   
+  5. Consider combinations or transformations that have not been utilized yet, such as:
+   
+  - Quadratic terms (e.g., x1**2)
+   
+  - Nested fractions or combinations involving sums and products.
+  6. Propose diverse equations:
+   
+  - Use combinations that are not trivial transformations of existing ones, e.g., avoid simple linear combinations if they've been 
+  exhausted.
+   
+  - Consider forms that might fit well with isobutane adsorption, such as Langmuir or Freundlich isotherm-inspired forms.
+  7. Ensure the suggestions are not SR-similar to avoid redundancy....
+
+============ run2.txt ============
+  -- Iteration 0 matches --
+    [keyword] 'Langmuir'
+      ...Scratch Pad:
+
+1. 
+  The relationship between pressure (x1) and loading (y) is often non-linear in adsorption processes. We should look for polynomial, 
+  rational, or simple multiplicative expressions.
+
+2. Simple linear expression: y = c0 * x1. 
+  This assumes a direct proportional relationship. Useful as a baseline.
+
+3. 
+  Quadratic expression: y = c0 * x1 + c1 * x1^2. Captures curvature in the data, which is common in adsorption isotherms.
+
+
+  4. Rational expression: y = c0 * x1 / (c1 + x1). This form is reminiscent of Langmuir isotherms, accounting for saturation at 
+  high pressures.
+
+
+  5. Multiplicative expression: y = c0 * x1 * (1 - c1 * x1). Useful if there's a peak or maximum loading point....
+
+============ run3.txt ============
+  -- Iteration 0 matches --
+    [keyword] 'Langmuir'
+      ...1. **Analysis of the Dataset:**
+
+- The dataset revolves around the adsorption of isobutane onto 
+  silicalite at a constant temperature, with x1 representing pressure and y representing loading.
+
+  - The relationship between adsorption (y) and pressure (x1) is often nonlinear and can be described using various isotherm models 
+  such as Langmuir, Freundlich, or Temkin.
+
+  - The Langmuir isotherm model is characterized by saturation behavior at high pressures, which can be represented as 
+  y = (a * x1) / (b + x1), where a and b are constants.
+- 
+  The Freundlich isotherm represents adsorption on heterogeneous surfaces and can be approximated by y = a * (x1^b), where a and b are 
+  constants.
+- The Temkin isotherm assumes indirect adsorbate/adsorbate interactions and can be represented as y = a * ln(c * x1).
+  
+- Given the restrictions on operators and the requirement to use only basic arithmetic, we need to simplify the 
+  possible expressions.
+
+2. **Candidate Models:**
+
+- **Model 1: Linear Fractional Model**: This model captures saturation behavior, 
+  typical for Langmuir-type adsorption, using a simple fractional form: y = (c0 * x1) / (c1 + x1).
+- **Model 2: Basic Power Model**: A simple form that captures non-linear behavior using a power law: y = c0 * x1 + c1 * x1^2. This captures potential quadratic growth.
+- **Model 3:...
+  -- Iteration 1 matches --
+    [keyword] 'Langmuir'
+      ...Scratch Pad:
+
+1. Observing the Pareto front:
+   - The first equation 'c[0]*x1+c[1]*x1**2' has a complexity of 9 and an MSE of 0.40797188. It shows a quadratic relationship, which is often suitable for modeling adsorption isotherms.
+   - The second equation '(c[0]*x1)/(c[1]+x1)' with a complexity of 7 and an MSE of 0.04670168 represents a Langmuir-type adsorption isotherm, which is common in adsorption studies.
+   - The third equation 'c[0]*x1+c[1]' with a complexity of 5 and an MSE of 0.03418604 suggests a linear relationship, which might be an oversimplification for adsorption processes.
+
+2. Constraints and Requirements:
+   - We need to propose three new equations that minimize both complexity and loss.
+   - The new equations must be diverse and not SR-similar to the existing ones.
+   - The dataset involves the adsorption of isobutane onto silicalite, where pressure influences loading. This suggests potential non-linear relationships.
+
+3. Strategy:
+   - Explore other common isotherm models or non-linear relationships that might fit the data.
+   - Use combinations of the given operators to propose new forms.
+   - Ensure that the proposed equations are not SR-similar to those already provided.
+
+4. Proposed Expressions:
+   - Consider using a combination of linear and inverse terms, which could capture saturation effects.
+   - Us...
+  -- Iteration 17 matches --
+    [keyword] 'Langmuir'
+      ...complexity: 7, mse: 0.00117965
+   - Equation: '(c[0]*x1+c[1])/(c[2]+x1)+c[3]*x1', complexity: 13, mse: 0.00108275
+   - Equation: 'c[0]/(c[1]+x1)+c[2]/(c[3]+x1)', complexity: 11, mse: 0.00108049
+   - These models use rational functions, which are common in adsorption isotherm models.
+
+3. Higher Complexity Models:
+   - Equation: 'c[0]*x1/(c[1]+x1)+c[2]/(c[3]+x1**2)', complexity: 15, mse: 0.00023392
+   - Equation: 'c[0]*x1/(c[1]+x1)+c[2]/(c[3]+x1**2)+c[4]', complexity: 17, mse: 0.00020625
+   - These introduce quadratic terms, improving mse but increasing complexity.
+
+Ideas for new expressions:
+- Consider using a combination of simple rational functions and polynomial terms to explore new regions of complexity-loss trade-offs.
+- Avoid repeating patterns similar to the existing ones, such as single fractional terms with additions or simple linear adjustments.
+
+New Potential Expressions:
+1. Consider using a dual-stage adsorption model approach with two adsorption sites, possibly inspired by Langmuir or Freundlich models but avoiding similarity.
+2. A combination of linear and inverse terms can capture non-linear behavior with lower complexity....
+
+============ run4.txt ============
+  -- Iteration 0 matches --
+    [keyword] 'Langmuir'
+      ...Scratch Pad:
+
+- This problem is a classic case of adsorption isotherms where pressure (x1) affects loading (y).
+- In adsorption processes, common relationships include linear, Langmuir, and Freundlich isotherms.
+- Linear model: y = c0 * x1 + c1
+- Langmuir isotherm: y = (c0 * x1) / (c1 + x1)
+- Freundlich isotherm: y = c0 * x1^(1/c1)
+- Due to constraints, consider simple equations with limited operators.
+
+1. Linear model: 
+   - y = c0 * x1 + c1
+   - Simple linear correlation to capture direct proportionality.
+
+2. Langmuir-like model:
+   - y = (c0 * x1) / (c1 + x1)
+   - This captures saturation behavior as pressure increases.
+
+3. Polynomial model (simplified):
+   - y = c0 * x1^2 + c1 * x1
+   - To capture potential non-linear relationships with a polynomial....
+
+============ run5.txt ============
+  -- Iteration 0 matches --
+    [keyword] 'Langmuir'
+      ...Scratch Pad:
+
+1. 
+  **Understanding the Dataset Context:** 
+   - The dataset describes the relationship between the pressure (independent variable, x1) 
+  and the loading of isobutane onto silicalite (dependent variable, y) at a constant temperature.
+   
+  - Typically, adsorption processes can show nonlinear relationships like Langmuir or Freundlich isotherms, 
+  but we are limited to algebraic expressions using basic operators.
+
+2. 
+  **Possible Functional Forms:**
+   - Given the constraints, we cannot directly use typical isotherm equations, 
+  but we can approximate with simple algebraic forms.
+   
+  - We can consider polynomial forms, rational functions, and other combinations of x1.
+
+3. 
+  **Polynomial Approximations:**
+   - A simple polynomial could capture the trend if it’s relatively smooth.
+   
+  - For instance, `y = c0 + c1*x1 + c2*x1^2` could approximate some nonlinear trends.
+
+4. 
+  **Rational Functions:**
+   - These can capture asymptotic behavior which might be relevant for adsorption isotherms.
+   
+  - For example, `y = c0*x1 / (c1 + x1)` is reminiscent of the Langmuir isotherm.
+
+
+  5. **Analysis:**
+   - The expressions should be simple yet able to capture a possibly saturating curve due to physical adsorption 
+  limits.
+   - Identify simple transformations of x1 that could represent the potential sat...
+  -- Iteration 19 matches --
+    [keyword] 'Langmuir'
+      ...Scratch Pad:
+
+1. Observing the provided equations, the best complexity-to-mse ratio is achieved by the equation `c[0]+c[1]/x1+c[2]/(x1+c[3])`. It balances a moderate complexity of 11 with the lowest mse of 0.00078644.
+
+2. To suggest new equations, we need to aim for a better or comparable mse while maintaining or reducing complexity. 
+
+3. The simplest equation in the list is `c[0]*x1+c[1]` with a complexity of 5, but its mse is relatively higher at 0.03418604. Using linear terms can yield low complexity but often results in higher mse.
+
+4. The equation `c[0]*x1/(c[1]+x1)+c[2]` and `c[0]/(c[1]+x1)+c[2]` have the second-best mse but with slightly different complexity. These are likely based on the Langmuir model, which is common for adsorption isotherms.
+
+5. To create diverse and potentially effective equations, we can:
+   - Utilize polynomial terms with division or addition to introduce non-linearity.
+   - Consider inverted or reciprocal terms of x1, which often help in capturing asymptotic behavior.
+   - Combine terms in a way that creates a balance between linearity and curvature.
+
+6. Constructing new expressions:
+   - `c[0] + c[1]*x1 + c[2]/x1`: Simple polynomial with a hyperbolic term.
+   - `c[0] + c[1]/(c[2] + x1) + c[3]*x1`: Incorporates a Langmuir-like term with an added linear term.
+   - `c[0]*x1 / (c[1] + x1) + c[2]/x1`: A combination of linear and inverse terms....
+
